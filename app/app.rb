@@ -6,5 +6,12 @@ require 'sinatra/base'
 
 class Makersbnb < Sinatra::Base
 
+  get '/' do
+    "hello"
+  end
+
+  get '/venue' do
+    erb :venue
+  end
 
 end
