@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
-  $('#createVenue').click(function(event){
-    event.preventDefault();
+  $('#createVenue').click(function(){
     var title = $('#title').val();
     var address = $('#address').val();
     var price = $('#price').val();
