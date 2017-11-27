@@ -3,5 +3,7 @@ class Favorite
 
   property :id, Serial
 
-  has n, :users, through: Resource
+  belongs_to :user
+  has n, :venues, through: Resource
+
 end

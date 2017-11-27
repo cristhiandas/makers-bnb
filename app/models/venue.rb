@@ -8,5 +8,6 @@ class Venue
   property :start_date, Date
   property :end_date, Date
 
-  # has n, :pictures
+  has n, :pictures, through: Resource
+  belongs_to :user
 end

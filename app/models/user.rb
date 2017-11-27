@@ -7,4 +7,5 @@ class User
   property :password, Text
 
   has n, :favorites, through: Resource
+  has n, :venues, through: Resource
 end
