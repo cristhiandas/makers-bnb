@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] = "development"
+ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
 require_relative 'dm_setup'
 
@@ -22,9 +22,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    Venue.first_or_create(title: params[:title], address: params[:address],
-                        price: params[:price])
-    #p (venue)
+    venue = Venue.create(user_id: session[:user], title: params[:title], address: params[:address], price: params[:price])
+    p (venue)
     # venue.pictures << Picture.first_or_create(picture: params[:image])
     # venue.save
     redirect '/venue'
@@ -36,7 +35,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user' do
-    User.first_or_create(name: params[:username], email: params[:email], password: params[:password])
+    user = User.first_or_create(name: params[:username], email: params[:email], password: params[:password])
+    session[:user] = user.id
     redirect '/welcome'
   end
 end

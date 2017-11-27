@@ -9,5 +9,5 @@ class Venue
   property :end_date, Date
 
   has n, :pictures, through: Resource
-  belongs_to :user
+  has 1, :user, through: Resource
 end
