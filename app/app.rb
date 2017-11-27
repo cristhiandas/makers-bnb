@@ -7,11 +7,36 @@ require 'sinatra/base'
 class Makersbnb < Sinatra::Base
 
   get '/' do
-    "hello"
+    redirect '/venue'
   end
 
   get '/venue' do
-    erb :venue
+    erb :'venue'
   end
+
+  get '/venue/new' do
+    erb :'venue/new'
+  end
+
+  post '/venue' do
+    venue = Venue.create(title: params[:title], address: params[:address],
+                        price: params[:price], pictures: params[:image])
+  end
+
+
+
+
+
+  post '/links' do
+  link = Link.create(title: params[:title], url: params[:url])
+  params[:tags].split.each do |tag|
+    link.tags << Tag.first_or_create(name: tag)
+  end
+  link.save
+  redirect 'links'
+end
+
+
+
 
 end
