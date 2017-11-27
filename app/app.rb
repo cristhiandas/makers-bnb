@@ -19,9 +19,6 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    p params[:title]
-    p params[:address]
-    p params[:price]
     Venue.first_or_create(title: params[:title], address: params[:address],
                         price: params[:price])
     #p (venue)
