@@ -3,6 +3,7 @@ require './app/app.rb'
 require 'capybara'
 require 'database_cleaner'
 require 'rspec'
+require 'pry'
 
 Capybara.app = Makersbnb
 

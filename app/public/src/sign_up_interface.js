@@ -5,8 +5,15 @@ $(document).ready(function() {
     var password = $('#password').val();
     postUser(username, email, password);
   })
+
   function postUser(username, email, password) {
-    $.post('/user', {username: username, email: email, password: password}, function(data) {
+    console.log({username: username, email: email, password: password})
+    $.ajax({
+      type: "POST",
+      url: '/user',
+      data: {username: username, email: email, password: password},
+      dataType: 'html'
     })
+
   }
 })
