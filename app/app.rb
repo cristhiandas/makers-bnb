@@ -22,8 +22,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    venue = Venue.create(user_id: session[:user], title: params[:title], address: params[:address], price: params[:price])
-    p (venue)
+    venue = Venue.first_or_create(user_id: session[:user], title: params[:title], address: params[:address], price: params[:price])
     # venue.pictures << Picture.first_or_create(picture: params[:image])
     # venue.save
     redirect '/venue'
@@ -37,6 +36,7 @@ class Makersbnb < Sinatra::Base
   post '/user' do
     user = User.first_or_create(name: params[:username], email: params[:email], password: params[:password])
     session[:user] = user.id
+    p user.id
     redirect '/welcome'
   end
 end
