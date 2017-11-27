@@ -1,17 +1,17 @@
 ENV["RACK_ENV"] = "development"
 require 'sinatra/base'
-# require_relative 'models/picture'
-# require_relative 'models/venue'
+require_relative 'dm_setup'
 
 
 class Makersbnb < Sinatra::Base
+  enable :sessions
 
   get '/' do
     redirect '/venue'
   end
 
   get '/venue' do
-    erb :'venue'
+    erb :'venue/index'
   end
 
   get '/venue/new' do
@@ -19,23 +19,16 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    venue = Venue.create(title: params[:title], address: params[:address],
-                        price: params[:price], pictures: params[:image])
+    p params[:title]
+    p params[:address]
+    p params[:price]
+    Venue.first_or_create(title: params[:title], address: params[:address],
+                        price: params[:price])
+    #p (venue)
+    # venue.pictures << Picture.first_or_create(picture: params[:image])
+    # venue.save
+    redirect '/venue'
   end
-
-
-
-
-
-  post '/links' do
-  link = Link.create(title: params[:title], url: params[:url])
-  params[:tags].split.each do |tag|
-    link.tags << Tag.first_or_create(name: tag)
-  end
-  link.save
-  redirect 'links'
-end
-
 
 
 
