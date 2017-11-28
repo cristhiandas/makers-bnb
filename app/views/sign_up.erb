@@ -7,11 +7,11 @@
   <script type= "text/javascript" src="/src/sign_up_interface.js"></script>
 </head>
 
-<form action='/welcome' method="get">
-Username: <input id="username" type="text"><br>
-Email: <input id="email" type="email"><br>
-Password: <input id="password" type="password"><br>
-Confirm Password: <input id="confirm_password" type="password"><br>
+<form action='/user' method="post">
+Username: <input id='jqusername' name="username" type="text"><br>
+Email: <input id='jqemail' name="email" type="email"><br>
+Password: <input id='jqpassword' name="password" type="password"><br>
+Confirm Password: <input id='jqpassword_confirmation' name="password_confirmation" type="password"><br>
 <button id="sign_up" type="submit">Sign Up</button>
 </form>
 </html>
