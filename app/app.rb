@@ -14,10 +14,15 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/' do
-    session[:password] = params[:password]
-    user = User.first(params[:email])
-    session[:name] = user.name
-    redirect '/venue'
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      session[:name] = user.name
+      redirect '/venue'
+    else
+      # flash.now[:errors] = ['The email or password is incorrect']
+      erb :index
+    end
   end
 
   get '/venue' do
@@ -44,10 +49,7 @@ class Makersbnb < Sinatra::Base
   post '/user' do
     user = User.create(name: params[:username], email: params[:email],
                       password: params[:password], password_confirmation: params[:password_confirmation])
-    # p "USERNAME",params[:username]
-    # p "EMAIL",params[:email]
     session[:user] = user.id
-    # p "USER IDD", user.id
     redirect '/sign_up' if user.id.nil?
     redirect '/welcome'
   end
