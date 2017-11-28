@@ -4,7 +4,7 @@ class User
 
   property :id, Serial
   property :name, String
-  property :email, Text
+  property :email, Text, :required => true, :unique => true
   property :password_digest, Text
 
   attr_reader :password
@@ -17,6 +17,9 @@ class User
 
 
   validates_confirmation_of :password
+  validates_presence_of :email
+  validates_format_of :email, as: :email_address
+  
   has n, :favorites, through: Resource
   has n, :venues, through: Resource
 end
