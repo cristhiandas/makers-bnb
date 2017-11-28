@@ -5,7 +5,13 @@
 </head>
 
 <body>
-  <h1>Welcome <%= @name %> </h1>
+  <% if @name %>
+  Welcome <%= @name %>
+  <form method='post' action='/user'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Sign out'>
+  </form>
+<% end %>
 <div>
   <% @venues.each do |venue| %>
   <li>
