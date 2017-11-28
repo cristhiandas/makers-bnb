@@ -26,11 +26,8 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/venue' do
-<<<<<<< HEAD
     @venues = Venue.all
-=======
     @name = session[:name]
->>>>>>> crisand
     erb :'venue/index'
   end
 
