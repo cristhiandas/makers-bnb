@@ -37,25 +37,22 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    user = session[:user_id]
-    user.venues << Venue.first_or_create(
+    user = User.get(session[:user_id])
+    venue = Venue.first_or_create(
        title: params[:title], address: params[:address],
         price: params[:price], description: params[:description])
     venue.pictures << Picture.first_or_create(path: params[:picture])
     venue.save
+    user.venues << venue
     user.save
     redirect '/venue'
   end
 
-  get '/welcome' do
-    erb :welcome
-  end
-
   delete '/user' do
     session[:user_id] = nil
-  session[:name] = nil
-  # flash.keep[:notice] = 'goodbye!'
-  redirect to '/'
+    session[:name] = nil
+    # flash.keep[:notice] = 'goodbye!'
+    redirect to '/'
   end
 
   post '/user' do

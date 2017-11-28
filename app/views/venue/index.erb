@@ -12,8 +12,11 @@
     <input type='submit' value='Sign out'>
   </form>
 <% end %>
+<form action="/venue/new">
+  <button id="Add_venue" >Add a Venue</button>
+</form>
 <div>
-  <% @venues.each do |venue| %>
+  <% @venues.reverse.each do |venue| %>
   <li>
     <br>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>

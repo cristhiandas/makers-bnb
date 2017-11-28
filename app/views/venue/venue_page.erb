@@ -1,7 +1,5 @@
 <div>
   <% @venues.each do |venue| %>
-  <li>
-    <br>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
     <br>
     <span ><b>Title:</b> <%= venue.title %></span>
@@ -14,10 +12,12 @@
   <br>
       <span><b>Description:</b> <%= venue.description   %></span>
   <span>
+    <br>
+  <br>
   <form action="">
     <button id="book" >Book</button>
   </form>
-  </li>
+
 
 
 <% end %>
