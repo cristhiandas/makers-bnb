@@ -5,9 +5,13 @@
 </head>
 
 <body>
+  <h1>Welcome <%= @name %> </h1>
 <div>
   <% @venues.each do |venue| %>
   <li>
+    <br>
+    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+    <br>
     <span ><b>Title:</b> <%= venue.title %></span>
   <br>
     <span><b>Address:</b> <%= venue.address   %></span>
@@ -16,25 +20,12 @@
     <span><b>Price:</b> <%= venue.price   %></span>
   <br>
   <span>
-    <br>
-  <b>Picture:</b>
-    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-  <br>
   <form action="/view/<%= venue.title%>">
     <button id="view" >View</button>
   </form>
   </li>
-
-
-<% end %>
-  <h1>Welcome <%= @name %> </h1>
-
-  <h4 id="title">House 1</h4>
-  <img id="image" src="https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg" height="200" width="200">
+  <% end %>
 </div>
-
-
-
 
 </body>
 
