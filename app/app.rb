@@ -14,6 +14,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/venue' do
+    @venues = Venue.all
     erb :'venue/index'
   end
 
