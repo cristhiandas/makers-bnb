@@ -19,7 +19,13 @@
     <br>
   <b>Picture:</b>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+  <br>
+  <form action="/sign_up">
+    <button id="rent" >Rent</button>
+  </form>
   </li>
+
+
 <% end %>
 </div>
 

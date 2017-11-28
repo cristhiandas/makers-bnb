@@ -30,7 +30,6 @@ class Makersbnb < Sinatra::Base
     redirect '/venue'
   end
 
-
   get '/welcome' do
     erb :welcome
   end

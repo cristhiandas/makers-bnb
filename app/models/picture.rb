@@ -1,5 +1,6 @@
 class Picture
-include DataMapper::Resource
+
+  include DataMapper::Resource
 
   property :id, Serial
   property :path,   FilePath, :required => true
