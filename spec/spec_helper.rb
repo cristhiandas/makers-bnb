@@ -1,9 +1,11 @@
 ENV["RACK_ENV"] = "test"
 require './app/app.rb'
 require 'capybara'
+require 'capybara/rspec'
 require 'database_cleaner'
 require 'rspec'
 require 'pry'
+require_relative 'features/web_helpers'
 
 Capybara.app = Makersbnb
 
