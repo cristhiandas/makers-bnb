@@ -14,6 +14,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/venue' do
+    @venues = Venue.all
     erb :'venue/index'
   end
 
@@ -23,11 +24,11 @@ class Makersbnb < Sinatra::Base
 
   post '/venue' do
     venue = Venue.first_or_create(user_id: session[:user], title: params[:title], address: params[:address], price: params[:price])
-    # venue.pictures << Picture.first_or_create(picture: params[:image])
-    # venue.save
+    venue_id = venue.id
+    venue.pictures << Picture.first_or_create(path: params[:picture], venue_id: venue_id)
+    venue.save
     redirect '/venue'
   end
-
 
   get '/welcome' do
     erb :welcome
@@ -42,5 +43,10 @@ class Makersbnb < Sinatra::Base
     p "USER IDD", user.id
     redirect '/sign_up' if user.id.nil?
     redirect '/welcome'
+  end
+
+  get '/view/:name' do
+    @venues = Venue.all(title: params[:name])
+    erb :'venue/index'
   end
 end

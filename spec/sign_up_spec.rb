@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+
 feature 'Sign up' do
   scenario 'When opening the page user sees form' do
     visit '/sign_up'

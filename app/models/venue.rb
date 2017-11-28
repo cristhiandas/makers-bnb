@@ -6,9 +6,11 @@ class Venue
   property :address, Text
   property :price, Integer
   property :user_id, Integer
-  # property :start_date, Date
-  # property :end_date, Date
+  property :picture, Text
+
+
 
   has n, :pictures, through: Resource
+  has n, :reservations, through: Resource
   has 1, :user, through: Resource
 end
