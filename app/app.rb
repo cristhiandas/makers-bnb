@@ -40,4 +40,9 @@ class Makersbnb < Sinatra::Base
     p user.id
     redirect '/welcome'
   end
+
+  get '/view/:name' do
+    @venues = Venue.all(title: params[:name])
+    erb :'venue/index'
+  end
 end
