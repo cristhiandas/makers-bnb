@@ -3,6 +3,7 @@ require 'sinatra/base'
 require_relative 'dm_setup'
 
 class Makersbnb < Sinatra::Base
+  use Rack::MethodOverride
   enable :sessions
 
   get '/sign_up' do
@@ -51,12 +52,22 @@ class Makersbnb < Sinatra::Base
     erb :welcome
   end
 
+  delete '/user' do
+  session[:name] = nil
+  # flash.keep[:notice] = 'goodbye!'
+  redirect to '/'
+end
+
   post '/user' do
     user = User.create(name: params[:username], email: params[:email],
                       password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
+<<<<<<< HEAD
+=======
+    session[:name] = user.name
+>>>>>>> crisand
     redirect '/sign_up' if user.id.nil?
-    redirect '/welcome'
+    redirect '/venue'
   end
 
   get '/view/:name' do

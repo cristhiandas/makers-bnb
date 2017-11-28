@@ -8,6 +8,7 @@ gem 'dm-postgres-adapter'
 gem 'rake'
 gem 'sinatra'
 gem 'pry'
+gem 'rack'
 
 
 group :test do
