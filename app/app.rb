@@ -54,8 +54,9 @@ class Makersbnb < Sinatra::Base
     user = User.create(name: params[:username], email: params[:email],
                       password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user] = user.id
+    session[:name] = user.name
     redirect '/sign_up' if user.id.nil?
-    redirect '/welcome'
+    redirect '/venue'
   end
 
   get '/view/:name' do
