@@ -48,6 +48,6 @@ class Makersbnb < Sinatra::Base
 
   get '/view/:name' do
     @venues = Venue.all(title: params[:name])
-    erb :'venue/index'
+    erb :'venue/venue_page'
   end
 end
