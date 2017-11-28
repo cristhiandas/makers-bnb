@@ -5,8 +5,8 @@ class Venue
   property :title, Text
   property :address, Text
   property :price, Integer
-  property :user_id, Integer
-  property :picture, Text
+  # property :user_id, Integer
+  property :description, Text
 
 
 
