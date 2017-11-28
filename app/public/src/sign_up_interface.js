@@ -8,7 +8,6 @@ $(document).ready(function() {
   })
 
   function postUser(username, email, password) {
-    console.log({username: username, email: email, password: password})
     $.ajax({
       type: "POST",
       url: '/user',
