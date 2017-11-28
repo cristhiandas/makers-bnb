@@ -8,4 +8,5 @@ class User
 
   has n, :favorites, through: Resource
   has n, :venues, through: Resource
+  has n, :reservations, through: Resource
 end

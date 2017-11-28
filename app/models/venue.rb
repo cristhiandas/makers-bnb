@@ -8,5 +8,6 @@ class Venue
   property :user_id, Integer
 
   has n, :pictures, through: Resource
+  has n, :reservations, through: Resource
   has 1, :user, through: Resource
 end
