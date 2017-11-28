@@ -19,7 +19,6 @@ class Makersbnb < Sinatra::Base
     if user
       session[:user_id] = user.id
       session[:name] = user.name
-      session[:user] = user
       redirect '/venue'
     else
       # flash.now[:errors] = ['The email or password is incorrect']
@@ -38,7 +37,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    user = session[:user]
+    user = session[:user_id]
     user.venues << Venue.first_or_create(
        title: params[:title], address: params[:address],
         price: params[:price], description: params[:description])
@@ -53,6 +52,7 @@ class Makersbnb < Sinatra::Base
   end
 
   delete '/user' do
+    session[:user_id] = nil
   session[:name] = nil
   # flash.keep[:notice] = 'goodbye!'
   redirect to '/'
