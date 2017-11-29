@@ -47,7 +47,7 @@ class Makersbnb < Sinatra::Base
   post '/venue' do
     user = User.get(session[:user_id])
     venue = Venue.first_or_create(
-       title: params[:title], address: params[:address],
+       title: params[:title], address: params[:address], city: params[:city],
         price: params[:price], description: params[:description])
     venue.pictures << Picture.first_or_create(path: params[:picture])
     venue.save
@@ -79,5 +79,10 @@ class Makersbnb < Sinatra::Base
     @name = session[:name]
     @venues = Venue.all(title: params[:name])
     erb :'venue/venue_page'
+  end
+
+  get '/search/:city' do
+    @venues = Venue.all(city: params[:city])
+    erb :'venue/index'
   end
 end

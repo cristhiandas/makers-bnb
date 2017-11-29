@@ -1,15 +1,3 @@
-<html lang="en">
-<head>
-  <meta charset="utf-8"><script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/src/date.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-</head>
-<body>
-  <h1> Click here go back to venues</h1>
-    <form action='/venue' method='get'>
-      <input id='go_venues' value='View Venues' type='submit'>
-    </form><br>
 <div>
   <% @venues.each do |venue| %>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
@@ -19,27 +7,22 @@
     <span><b>Address:</b> <%= venue.address   %></span>
   <br>
   <br>
+    <span><b>City:</b> <%= venue.city   %></span>
+  <br>
+  <br>
     <span><b>Price:</b> <%= venue.price   %></span>
   <br>
+
   <br>
       <span><b>Description:</b> <%= venue.description   %></span>
   <span>
     <br>
   <br>
-
-  <% if @name %>
   <form action="">
-    <p>Start Date: <input type="text" id="datepicker"></p>
-    <p>End Date: <input type="text" id="datepicker"></p>
     <button id="book" >Book</button>
   </form>
-  <% else %>
-   <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
-  <%end%>
 
 
 
 <% end %>
 </div>
-</body>
-</html>

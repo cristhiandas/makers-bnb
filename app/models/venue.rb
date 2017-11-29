@@ -4,6 +4,7 @@ class Venue
   property :id, Serial
   property :title, Text, :unique => true
   property :address, Text
+  property :city, Text
   property :price, Integer
   property :description, Text
 
