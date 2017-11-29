@@ -13,6 +13,10 @@ class Makersbnb < Sinatra::Base
     erb :sign_up
   end
 
+  get '/search' do
+    erb :'search'
+  end
+
   get '/' do
     erb :index
   end

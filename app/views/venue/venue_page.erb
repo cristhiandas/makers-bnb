@@ -1,4 +1,9 @@
+
+<body>
+
 <div>
+
+
   <% @venues.each do |venue| %>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
     <br>
@@ -21,8 +26,6 @@
   <form action="">
     <button id="book" >Book</button>
   </form>
-
-
-
-<% end %>
-</div>
+  <% end %>
+  </div>
+<body>
