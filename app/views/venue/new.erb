@@ -6,14 +6,21 @@
 </head>
 
 <body>
+  <h1> Add a new venue</h1>
   <form action='/venue' method='post'>
     <input name= 'title' type="text" placeholder="enter title" >
     <input name= 'address' type="text" placeholder="enter address" >
     <input name= 'price' type="text" placeholder="enter price" >
     <input name= 'description' type="text" placeholder="enter description" >
     <input name= 'picture' type="url" placeholder="enter image" >
-    <input id="createVenue" type="submit">
+    <input id="createVenue" value='Add' type="submit">
   </form>
+
+  <br>
+  <h1> Click here go back to venues</h1>
+    <form action='/venue' method='get'>
+      <input id='go_venues' value='View Venues' type='submit'>
+    </form>
 
 </body>
 
