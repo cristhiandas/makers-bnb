@@ -71,8 +71,19 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/view/:name' do
+
     @name = session[:name]
     @venues = Venue.all(title: params[:name])
+
     erb :'venue/venue_page'
+
   end
+
+  post '/view' do
+    session[:startDate] = params[:startDate]
+    session[:endDate] = params[:endDate]
+    redirect 'view/:name'
+  end
+
+
 end
