@@ -12,5 +12,16 @@ feature 'sign in' do
     expect(page).to_not have_content('Welcome fakename')
   end
 
+  scenario 'it has a sign up button' do
+    visit '/'
+    expect(page).to have_button('go_sign_up')
+  end
+
+  scenario 'goes to sign up page' do
+    visit '/'
+    click_button('go_sign_up')
+    expect(page).to have_content('Please Sign Up')
+  end
+
 
 end

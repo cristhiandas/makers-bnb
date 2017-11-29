@@ -23,5 +23,15 @@ feature 'Sign up' do
     expect{ sign_up('fakename', '123@test.com', '12345', '12345') }.to_not change(User, :count)
   end
 
+  scenario 'there is a sign in' do
+    visit '/sign_up'
+    expect(page).to have_content('Already have an account?')
+    expect(page).to have_button('go_sign_in')
+  end
 
+  scenario 'user with an account can go to sign in' do
+    visit '/sign_up'
+    click_button('go_sign_in')
+    expect(page).to have_content('This is Makers bnb')
+  end
 end
