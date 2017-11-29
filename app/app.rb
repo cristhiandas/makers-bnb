@@ -65,6 +65,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/view/:name' do
+    @name = session[:name]
     @venues = Venue.all(title: params[:name])
     erb :'venue/venue_page'
   end
