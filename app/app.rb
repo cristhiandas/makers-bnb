@@ -81,12 +81,26 @@ class Makersbnb < Sinatra::Base
 
   get '/view/:name' do
     @name = session[:name]
-    @venues = Venue.all(title: params[:name])
+    p "BIG PEE"
+    p @venues = Venue.all(title: params[:name])
+    p @last_venue = Venue.first(title: params[:name])
+    session[:last_venue] = @last_venue.id
     erb :'venue/venue_page'
   end
 
   get '/search/:city' do
     @venues = Venue.all(city: params[:city])
     erb :'venue/index'
+  end
+
+  post '/favorite/new' do
+    p @user = User.get(session[:user_id])
+    p @user.id
+    p @venue = Venue.get(session[:last_venue]), '2ND HERE'
+    p favorite = Favorite.create(user_id: @user.id)
+    favorite.venues << @venue
+    favorite.save
+    # p @user.favorites << @venue
+    redirect "/view/#{@venue.title}?"
   end
 end

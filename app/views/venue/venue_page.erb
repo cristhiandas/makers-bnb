@@ -1,3 +1,7 @@
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src='../../src/favorite.js' ></script>
+</head>
 
 <body>
 
@@ -7,7 +11,7 @@
   <% @venues.each do |venue| %>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
     <br>
-    <span ><b>Title:</b> <%= venue.title %></span>
+    <span> <b>Title:</b> <%= @title = venue.title %></span>
   <br>
     <span><b>Address:</b> <%= venue.address   %></span>
   <br>
@@ -26,6 +30,16 @@
   <form action="">
     <button id="book" >Book</button>
   </form>
+
   <% end %>
   </div>
+
+  <form action='/favorite/new' method='post'>
+  <button id="favorite" name='favorite'>Favorite</button>
+  </form>
+
+  <h1> Click here go back to venues</h1>
+    <form action='/venue' method='get'>
+      <input id='go_venues' value='View Venues' type='submit'>
+    </form>
 <body>
