@@ -14,9 +14,14 @@
   <span>
     <br>
   <br>
+
+  <% if @name %>
   <form action="">
     <button id="book" >Book</button>
   </form>
+  <% else %>
+   <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
+  <%end%>
 
 
 
