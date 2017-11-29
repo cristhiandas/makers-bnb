@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
 
+
+ <% if session[:user_id] %>
+ <form method='post' action='/user'>
+   <input type='hidden' name='_method' value='delete'>
+   <input type='submit' value='Sign out'>
+ </form>
+
+ <% else %>
+  <form action='/' method="get">
+    <button id="go_sign_in" type="submit">Sign In</button>
+  </form>
+
+  <form action='/sign_up' method='get'>
+    <input id='go_sign_up' value='Sign Up' type='submit'>
+  </form>
+<% end %>
+
+
+
 <% if flash[:notice] %>
   <div id='notice'><%= flash[:notice] %></div>
 <% end %>

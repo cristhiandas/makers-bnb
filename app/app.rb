@@ -13,6 +13,10 @@ class Makersbnb < Sinatra::Base
     erb :sign_up
   end
 
+  get '/search' do
+    erb :'search'
+  end
+
   get '/' do
     erb :index
   end
@@ -36,13 +40,18 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/venue/new' do
-    erb :'venue/new'
+    if session[:user_id]
+      erb :'venue/new'
+    else
+      flash[:notice] = 'Please sign in to add venue'
+      redirect '/'
+    end
   end
 
   post '/venue' do
     user = User.get(session[:user_id])
     venue = Venue.first_or_create(
-       title: params[:title], address: params[:address],
+       title: params[:title], address: params[:address], city: params[:city],
         price: params[:price], description: params[:description])
     venue.pictures << Picture.first_or_create(path: params[:picture])
     venue.save
@@ -75,6 +84,8 @@ class Makersbnb < Sinatra::Base
     @name = session[:name]
     @venues = Venue.all(title: params[:name])
     session[:title] = params[:name]
+    @last_venue = Venue.first(title: params[:name])
+    session[:last_venue] = @last_venue.id
     erb :'venue/venue_page'
 
   end
@@ -90,5 +101,19 @@ class Makersbnb < Sinatra::Base
     redirect 'view/:name'
   end
 
+  get '/search/:city' do
+    @venues = Venue.all(city: params[:city])
+    erb :'venue/index'
+  end
 
+  post '/favorite/new' do
+    p @user = User.get(session[:user_id])
+    p @user.id
+    p @venue = Venue.get(session[:last_venue]), '2ND HERE'
+    p favorite = Favorite.create(user_id: @user.id)
+    favorite.venues << @venue
+    favorite.save
+    # p @user.favorites << @venue
+    redirect "/view/#{@venue.title}?"
+  end
 end

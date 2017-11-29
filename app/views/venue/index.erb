@@ -1,42 +1,45 @@
 <html>
 
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src='../../src/search.js' ></script>
 </head>
 
 <body>
   <% if @name %>
   Welcome <%= @name %>
-  <form method='post' action='/user'>
-    <input type='hidden' name='_method' value='delete'>
-    <input type='submit' value='Sign out'>
-  </form>
   <form action="/venue/new">
     <button id="Add_venue" >Add a Venue</button>
   </form>
-  <% else %>
-  <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to add a venue
 <% end %>
+
+<input type="text" class="live-search-box" placeholder="search here" />
 
 
 <div>
-  <% @venues.reverse.each do |venue| %>
-    <br>
-    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-    <br>
+  <ul class="live-search-list">
+   <% @venues.reverse.each do |venue| %>
+      <br>
+  <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+      <br>
     <span ><b>Title:</b> <%= venue.title %></span>
-  <br>
-    <span><b>Address:</b> <%= venue.address   %></span>
-  <br>
-  <br>
+    <br>
+     <span><b>Address:</b> <%= venue.address   %></span>
+    <br>
+    <br>
+    <span><b>City:</b> <%= venue.city   %></span>
+    <br>
+    <br>
     <span><b>Price:</b> <%= venue.price   %></span>
-  <br>
-  <span>
-  <form action="/view/<%= venue.title%>">
-    <button id="view" >View</button>
-  </form>
+    <br>
+    <span>
+    <form action="/view/<%= venue.title%>">
+      <button id="view" >View</button>
+    </form></ul>
   <% end %>
+  </ul>
 </div>
+
 
 </body>
 

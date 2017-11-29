@@ -1,27 +1,33 @@
-<html lang="en">
 <head>
-  <meta charset="utf-8"><script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/src/date.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src='../../src/favorite.js' ></script>
 </head>
+
 <body>
+
 <div>
+
+
   <% @venues.each do |venue| %>
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
     <br>
-    <span ><b>Title:</b> <%= venue.title %></span>
+    <span> <b>Title:</b> <%= @title = venue.title %></span>
   <br>
     <span><b>Address:</b> <%= venue.address   %></span>
   <br>
   <br>
+    <span><b>City:</b> <%= venue.city   %></span>
+  <br>
+  <br>
     <span><b>Price:</b> <%= venue.price   %></span>
   <br>
+
   <br>
       <span><b>Description:</b> <%= venue.description   %></span>
   <span>
     <br>
   <br>
+<<<<<<< HEAD
 
 <% end %>
 
@@ -34,8 +40,27 @@
 <% else %>
 <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
 <%end%>
+=======
+  <form action="">
+    <button id="book" >Book</button>
+  </form>
 
+  <% end %>
+  </div>
+>>>>>>> crisand
 
+  <form action='/favorite/new' method='post'>
+  <button id="favorite" name='favorite'>Favorite</button>
+  </form>
+
+<<<<<<< HEAD
 </div>
 </body>
 </html>
+=======
+  <h1> Click here go back to venues</h1>
+    <form action='/venue' method='get'>
+      <input id='go_venues' value='View Venues' type='submit'>
+    </form>
+<body>
+>>>>>>> crisand
