@@ -36,7 +36,12 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/venue/new' do
-    erb :'venue/new'
+    if session[:user_id]
+      erb :'venue/new'
+    else
+      flash[:notice] = 'Please sign in to add venue'
+      redirect '/'
+    end
   end
 
   post '/venue' do
