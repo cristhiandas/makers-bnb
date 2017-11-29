@@ -24,7 +24,7 @@ class Makersbnb < Sinatra::Base
       session[:name] = user.name
       redirect '/venue'
     else
-      flash[:errors] = 'The email or password is incorrect'
+      flash[:notice] = "Incorrect email or password"
       redirect '/'
     end
   end
@@ -64,7 +64,7 @@ class Makersbnb < Sinatra::Base
     session[:user_id] = user.id
     session[:name] = user.name
     if user.id.nil?
-      flash[:notice] = "Password and confirmation password do not match"
+      flash[:errors] = user.errors.full_messages
       redirect '/sign_up'
     end
     redirect '/venue'
