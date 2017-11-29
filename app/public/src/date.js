@@ -7,7 +7,7 @@
   });
 
   function postDate(startDate, endDate){
-    $.post('/view',{startDate: startDate, endDate: endDate});
+    $.post('/view/:name',{startDate: startDate, endDate: endDate});
   };
 
   $( function() {

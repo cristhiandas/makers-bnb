@@ -74,16 +74,23 @@ class Makersbnb < Sinatra::Base
 
     @name = session[:name]
     @venues = Venue.all(title: params[:name])
-
+    session[:title] = params[:name]
     erb :'venue/venue_page'
 
   end
 
-  post '/view' do
-    session[:startDate] = params[:startDate]
-    session[:endDate] = params[:endDate]
-
-
+  post '/view/:name' do
+    p "NAMME", params[:title]
+    venue = Venue.get(session[:title])
+    reserve = Reservation.create(start_date: params[:startDate], end_date: params[:endDate])
+    # venue.save
+    # reserve.save
+    venue.reservations << reserve
+    venue.save
+    p venue
+    # reserve.venues << Venue.all(title: session[:title]) doesn't work
+    p venue.reservations
+    p reserve
     redirect 'view/:name'
   end
 
