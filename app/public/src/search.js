@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+$(document).ready(function($){
 
 $('.live-search-list ul').each(function(){
 $(this).attr('data-search-term', $(this).text().toLowerCase());
