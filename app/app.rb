@@ -1,10 +1,13 @@
 ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative 'dm_setup'
 
 class Makersbnb < Sinatra::Base
-  use Rack::MethodOverride
   enable :sessions
+  set :session_secret, 'cool'
+  register Sinatra::Flash
+  use Rack::MethodOverride
 
   get '/sign_up' do
     erb :sign_up
@@ -21,8 +24,8 @@ class Makersbnb < Sinatra::Base
       session[:name] = user.name
       redirect '/venue'
     else
-      # flash.now[:errors] = ['The email or password is incorrect']
-      erb :index
+      flash[:errors] = 'The email or password is incorrect'
+      redirect '/'
     end
   end
 
@@ -60,7 +63,10 @@ class Makersbnb < Sinatra::Base
                       password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
     session[:name] = user.name
-    redirect '/sign_up' if user.id.nil?
+    if user.id.nil?
+      flash[:notice] = "Password and confirmation password do not match"
+      redirect '/sign_up'
+    end
     redirect '/venue'
   end
 
