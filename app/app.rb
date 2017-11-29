@@ -82,6 +82,8 @@ class Makersbnb < Sinatra::Base
   post '/view' do
     session[:startDate] = params[:startDate]
     session[:endDate] = params[:endDate]
+
+
     redirect 'view/:name'
   end
 
