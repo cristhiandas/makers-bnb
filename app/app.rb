@@ -107,13 +107,13 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/favorite/new' do
-    p @user = User.get(session[:user_id])
-    p @user.id
-    p @venue = Venue.get(session[:last_venue]), '2ND HERE'
-    p favorite = Favorite.create(user_id: @user.id)
-    favorite.venues << @venue
+    user = User.get(session[:user_id])
+    venue = Venue.get(session[:last_venue])
+    favorite = Favorite.create(user_id: user.id)
+    favorite.venues << venue
     favorite.save
-    # p @user.favorites << @venue
-    redirect "/view/#{@venue.title}?"
+    user.favorites << favorite
+    user.save
+    redirect "/view/#{venue.title}?"
   end
 end
