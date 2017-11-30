@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+  <link rel="stylesheet" type='text/css' href="/css/menu.css">
+
+</head>
+
+
+<nav class="slidemenu">
+
+  <!-- Item 1 -->
+  <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
+  <label for="slide-item-1"><p class="icon"><a href='/' style="text-decoration: none;">♬</p><span>Home</span></a></label>
+
+  <!-- Item 2 -->
+  <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" />
+  <label for="slide-item-2"><p class="icon"><a href='/venue' style="text-decoration: none;">✈</p><span>Venues</a></span></label>
+
+  <!-- Item 3 -->
+  <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
+  <label for="slide-item-3"><p class="icon"><a href='/reservation' style="text-decoration: none;">✎</p><span>Reservations</span></label></a>
+
+  <!-- Item 4 -->
+  <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
+  <label for="slide-item-4"><p class="icon"><a href='/favorite' style="text-decoration: none;">★</p><span>Favorites</span></label></a>
+
+
+  <div class="clear"></div>
+
+  <!-- Bar -->
+  <div class="slider">
+    <div class="bar"></div>
+  </div>
+
+</nav>
 
 
  <% if session[:user_id] %>
