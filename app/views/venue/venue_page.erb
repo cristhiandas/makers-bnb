@@ -49,6 +49,9 @@
 <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
 <%end%>
 
+<% if flash[:errors] %>
+<%= flash[:errors] %>
+<%end%>
 
   </div>
 
