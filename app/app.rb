@@ -121,9 +121,13 @@ class Makersbnb < Sinatra::Base
     venues = Venue.all
     favorites = Favorite.all
 
-    favorites.each do |favorite|
-      @user_favorites = favorite.venues
-    end
+    @user_favorites = favorites.venues
+    # favorites.each do |favorite|
+    #   @user_favorites = favorite.venues
+    # end
+
+    p "USER FAVES",@user_favorites
+    p 'FAVORITES', favorites
     # p @favorites_venues = favorite.venues
     # if @user.favorite == @user.id
     #   @venues.get(favorite.id)
