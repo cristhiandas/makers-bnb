@@ -115,7 +115,7 @@ class Makersbnb < Sinatra::Base
       venue.save
       user.reservations << reserve
       user.save
-      redirect '/bookings'
+      redirect '/reservation'
     end
   end
 
@@ -148,23 +148,17 @@ class Makersbnb < Sinatra::Base
     erb :'favorite/index'
   end
 
-  get '/reservation' do
-    reservation = Reservation.all
-    @user_reservations = reservation.venues
-    erb :'reservation/index'
-  end
+  get '/reservations' do
+    user = User.get(session[:user_id])
+    reservations = Reservation.all
+    all_users = reservations.user
+    all_users.each do |user_with_reservation|
+      if user == user_with_reservation
+        resvations_of_the_user = user.reservations
+        @venues = resvations_of_the_user.venue
 
-  get '/bookings' do
-    p @user = User.get(session[:user_id])
-    p @reservations = Reservation.all
-    p @all_users = @reservations.user, "HERERERERERERERERERE"
-    @all_users.each do |user_with_reservation|
-      if @user == user_with_reservation
-        p @resvations_of_the_user = @user.reservations
-        p @venues = @resvations_of_the_user.venue
-        
       end
     end
-    erb :bookings
+    erb :'reservations/index'
   end
 end
