@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src='../../src/search.js' ></script>
+</head>
+
+<body>
+
+<input type="text" class="live-search-box" placeholder="search here" />
+
+
+<div>
+  <ul class="live-search-list">
+   <% @resvations_of_the_user.sort.each do |reservation| %>
+      <br>
+    <span ><b>Start Date:</b> <%= reservation.start_date %></span>
+    <br>
+    <span><b>End Date:</b> <%= reservation.end_date   %></span>
+    <br>
+    <% @venues.reverse.each do |venue| %>
+        <br>
+        <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+        <br>
+        <span ><b>Title:</b> <%= venue.title %></span>
+        <br>
+        <span><b>Address:</b> <%= venue.address   %></span>
+        <br>
+        <br>
+        <span><b>City:</b> <%= venue.city   %></span>
+        <br>
+        <br>
+        <span><b>Price:</b> <%= venue.price   %></span>
+        <br>
+        <span>
+        <form action="/view/<%= venue.title%>">
+          <button id="view" >View</button>
+        </form></ul>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+
+
+</body>
+
+</html>

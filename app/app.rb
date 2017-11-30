@@ -115,7 +115,7 @@ class Makersbnb < Sinatra::Base
       venue.save
       user.reservations << reserve
       user.save
-      redirect '/venue'
+      redirect '/bookings'
     end
   end
 
@@ -133,5 +133,18 @@ class Makersbnb < Sinatra::Base
     user.favorites << favorite
     user.save
     redirect "/view/#{venue.title}?"
+  end
+
+  get '/bookings' do
+    @user = User.get(session[:user_id])
+    p @reservations = Reservation.all
+    p @all_users = @reservations.user, "HERERERERERERERERERE"
+    @all_users.each do |user_with_reservation|
+      if @user == user_with_reservation
+        p @resvations_of_the_user = @user.reservations
+        p @venues = @resvations_of_the_user.venue
+      end
+    end
+    erb :bookings
   end
 end
