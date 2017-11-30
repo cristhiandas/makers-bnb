@@ -106,6 +106,7 @@ class Makersbnb < Sinatra::Base
         end
       end
     end
+    
     if @res
       flash[:taken] = "Dates Unavailable"
       redirect "/view/#{venue.title}"
@@ -154,9 +155,8 @@ class Makersbnb < Sinatra::Base
     all_users = reservations.user
     all_users.each do |user_with_reservation|
       if user == user_with_reservation
-        resvations_of_the_user = user.reservations
-        @venues = resvations_of_the_user.venue
-
+        reservations_of_the_user = user.reservations
+        @venues = reservations_of_the_user.venue
       end
     end
     erb :'reservations/index'
