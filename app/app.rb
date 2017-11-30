@@ -115,7 +115,7 @@ class Makersbnb < Sinatra::Base
       venue.save
       user.reservations << reserve
       user.save
-      redirect '/reservation'
+      redirect '/reservations'
     end
   end
 
