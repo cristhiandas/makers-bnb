@@ -99,7 +99,9 @@ class Makersbnb < Sinatra::Base
       venue.reservations.each do |past_reservations|
         enddate = Date.parse(past_reservations.end_date.to_s)
         startdate = Date.parse(past_reservations.start_date.to_s)
-        if (enddate > Date.parse(params[:startDate].to_s) && Date.parse(params[:startDate].to_s) >= startdate) ||  (enddate >= Date.parse(params[:endDate].to_s) && Date.parse(params[:endDate].to_s) > startdate) || (Date.parse(params[:startDate].to_s) <= startdate && Date.parse(params[:endDate].to_s) >= enddate)
+        newstart = Date.parse(params[:startDate].to_s)
+        newend = Date.parse(params[:endDate].to_s)
+        if (enddate > newstart && newstart >= startdate) ||  (enddate >= newend && newend > startdate) || (newstart <= startdate && newend >= enddate)
           @res = true
         end
       end
