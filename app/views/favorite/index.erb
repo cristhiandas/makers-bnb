@@ -1,20 +1,21 @@
-<% @user_favorites.each do |venue| %>
-  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-  <br>
-  <span> <b>Title:</b> <%= venue.title %></span>
-  <br>
-  <span><b>Address:</b> <%= venue.address   %></span>
-  <br>
-  <br>
-  <span><b>City:</b> <%= venue.city   %></span>
-  <br>
-  <br>
-  <span><b>Price:</b> <%= venue.price   %></span>
-  <br>
-  <br>
-    <span><b>Description:</b> <%= venue.description   %></span>
-  <span>
-  <br>
-  <br>
 
-<% end %>
+  <% @favorite_venues.each do |venue| %>
+    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+    <br>
+    <span> <b>Title:</b> <%= venue.title %></span>
+    <br>
+    <span><b>Address:</b> <%= venue.address   %></span>
+    <br>
+    <br>
+    <span><b>City:</b> <%= venue.city   %></span>
+    <br>
+    <br>
+    <span><b>Price:</b> <%= venue.price   %></span>
+    <br>
+    <br>
+      <span><b>Description:</b> <%= venue.description   %></span>
+    <span>
+    <br>
+    <br>
+
+  <% end %>
