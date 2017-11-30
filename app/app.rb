@@ -80,14 +80,13 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/view/:name' do
-
     @name = session[:name]
     @venues = Venue.all(title: params[:name])
     session[:title] = params[:name]
-    @last_venue = Venue.first(title: params[:name])
-    session[:last_venue] = @last_venue.id
+    @venues.each do |venue|
+      session[:last_venue] = venue.id
+    end
     erb :'venue/venue_page'
-
   end
 
   post '/view/:name' do
