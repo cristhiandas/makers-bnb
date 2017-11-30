@@ -63,7 +63,7 @@ class Makersbnb < Sinatra::Base
   delete '/user' do
     session[:user_id] = nil
     session[:name] = nil
-    # flash.keep[:notice] = 'goodbye!'
+    flash[:notice] = 'goodbye!'
     redirect to '/'
   end
 
@@ -81,11 +81,23 @@ class Makersbnb < Sinatra::Base
 
   get '/view/:name' do
     @name = session[:name]
-    p "BIG PEE"
-    p @venues = Venue.all(title: params[:name])
-    p @last_venue = Venue.first(title: params[:name])
-    session[:last_venue] = @last_venue.id
+    @venues = Venue.all(title: params[:name])
+    session[:title] = params[:name]
+    @venues.each do |venue|
+      session[:last_venue] = venue.id
+    end
     erb :'venue/venue_page'
+  end
+
+  post '/view/:name' do
+    user = User.get(session[:user_id])
+    venue = Venue.get(session[:title])
+    reserve = Reservation.create(start_date: params[:startDate], end_date: params[:endDate])
+    venue.reservations << reserve
+    venue.save
+    user.reservations << reserve
+    user.save
+    redirect 'view/:name'
   end
 
   get '/search/:city' do
