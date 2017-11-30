@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+  <link rel="stylesheet" type='text/css' href="/css/menu.css">
+
+</head>
+
+
+<nav class="slidemenu">
+
+  <!-- Item 1 -->
+  <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
+  <label for="slide-item-1"><p class="icon"><a href='/' style="text-decoration: none;">♬</p><span>Home</span></a></label>
+
+  <!-- Item 2 -->
+  <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" />
+  <label for="slide-item-2"><p class="icon"><a href='/venue' style="text-decoration: none;">✈</p><span>Venues</a></span></label>
+
+  <!-- Item 3 -->
+  <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
+  <label for="slide-item-3"><p class="icon"><a href='/reservation' style="text-decoration: none;">✎</p><span>Reservations</span></label></a>
+
+  <!-- Item 4 -->
+  <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
+  <label for="slide-item-4"><p class="icon"><a href='/favorite' style="text-decoration: none;">★</p><span>Favorites</span></label></a>
+
+
+  <div class="clear"></div>
+
+  <!-- Bar -->
+  <div class="slider">
+    <div class="bar"></div>
+  </div>
+
+</nav>
+
 
  <% if session[:user_id] %>
  <form method='post' action='/user'>
@@ -9,14 +43,17 @@
  </form>
 
  <% else %>
-  <form action='/' method="get">
-    <button id="go_sign_in" type="submit">Sign In</button>
+  <form id='sign_in_form' action='/' method='post'>
+    <input id='email' name='email' type='email' placeholder='enter email'>
+    <input id='password' name='password' type='password' placeholder='enter password'>
+    <input id='sign_in' value='Sign In' type='submit'>
   </form>
-
-  <form action='/sign_up' method='get'>
-    <input id='go_sign_up' value='Sign Up' type='submit'>
-  </form>
+  Don't have an account? <a href='/sign_up'> Sign up </a>
 <% end %>
+
+  <!-- <form action='/venue' method='get'>
+    <input id='go_venues' value='View Venues' type='submit'>
+  </form> -->
 
 
 
