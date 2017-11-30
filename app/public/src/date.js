@@ -15,7 +15,9 @@
       var startDate = $(this).val();
       $("#endDate").on("change",function(){
         var endDate = $(this).val();
-        postDate(startDate, endDate);
+        $("#book").click(function(){
+          postDate(startDate, endDate);
+        });
       });
     });
   });
