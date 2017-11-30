@@ -12,13 +12,9 @@
 
 <div>
   <ul class="live-search-list">
-   <% @resvations_of_the_user.sort.each do |reservation| %>
-      <br>
-    <span ><b>Start Date:</b> <%= reservation.start_date %></span>
-    <br>
-    <span><b>End Date:</b> <%= reservation.end_date   %></span>
-    <br>
+
     <% @venues.reverse.each do |venue| %>
+
         <br>
         <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
         <br>
@@ -37,7 +33,6 @@
           <button id="view" >View</button>
         </form></ul>
     <% end %>
-  <% end %>
   </ul>
 </div>
 
