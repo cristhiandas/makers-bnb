@@ -118,21 +118,20 @@ class Makersbnb < Sinatra::Base
 
   get '/favorite' do
     user = User.get(session[:user_id])
-    venues = Venue.all
     favorites = Favorite.all
-
-    @user_favorites = favorites.venues
-    # favorites.each do |favorite|
-    #   @user_favorites = favorite.venues
-    # end
-
-    p "USER FAVES",@user_favorites
-    p 'FAVORITES', favorites
-    # p @favorites_venues = favorite.venues
-    # if @user.favorite == @user.id
-    #   @venues.get(favorite.id)
-    # end
-
+    all_user_with_favorites = favorites.user
+      all_user_with_favorites.each do |user_with_fave|
+        if user==user_with_fave
+          fave = user.favorites
+          @favorite_venues = fave.venues
+      end
+    end
     erb :'favorite/index'
+  end
+
+  get '/reservation' do
+    reservation = Reservation.all
+    @user_reservations = reservation.venues
+    erb :'reservation/index'
   end
 end
