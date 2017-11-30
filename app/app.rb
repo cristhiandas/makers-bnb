@@ -94,6 +94,7 @@ class Makersbnb < Sinatra::Base
     user = User.get(session[:user_id])
     venue = Venue.first(title: session[:title])
     @res = false
+
     if venue
       venue.reservations.each do |past_reservations|
         enddate = Date.parse(past_reservations.end_date.to_s)
@@ -104,15 +105,16 @@ class Makersbnb < Sinatra::Base
       end
     end
     if @res
-      p flash[:errors] = "Dates taken"
+      flash[:taken] = "Dates Unavailable"
+      redirect "/view/#{venue.title}"
     else
       reserve = Reservation.create(start_date: params[:startDate], end_date: params[:endDate])
       venue.reservations << reserve
       venue.save
       user.reservations << reserve
       user.save
+      redirect '/venue'
     end
-    redirect 'view/:name'
   end
 
   get '/search/:city' do

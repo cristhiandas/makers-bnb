@@ -37,21 +37,16 @@
     <br>
   <br>
 
+  <% if @name %>
+  <form action="/view/<%= venue.title%>" method = "post">
+    <p>Start Date: <input id="startDate" type="text" name="startDate"></p>
+    <p>End Date: <input id="endDate" type="text" name="endDate"></p>
+    <button id="book" >Book</button>
+  </form>
+  <% else %>
+  <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
+  <%end%>
 <% end %>
-
-<% if @name %>
-<form action="">
-  <p>Start Date: <input type="text" id="startDate"></p>
-  <p>End Date: <input type="text" id="endDate"></p>
-  <button id="book" >Book</button>
-</form>
-<% else %>
-<a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
-<%end%>
-
-<% if flash[:errors] %>
-<%= flash[:errors] %>
-<%end%>
 
   </div>
 

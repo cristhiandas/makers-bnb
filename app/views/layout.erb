@@ -28,6 +28,10 @@
   <div id='errors'><%= flash[:errors] %></div>
 <% end %>
 
+<% if flash[:taken] %>
+<div id='taken'><%= flash[:taken] %></div>
+<%end%>
+
 
 <%= yield %>
 </html>
