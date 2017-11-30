@@ -137,12 +137,12 @@ class Makersbnb < Sinatra::Base
 
   get '/bookings' do
     @user = User.get(session[:user_id])
-    p @reservations = Reservation.all
-    p @all_users = @reservations.user, "HERERERERERERERERERE"
+    @reservations = Reservation.all
+    @all_users = @reservations.user, "HERERERERERERERERERE"
     @all_users.each do |user_with_reservation|
       if @user == user_with_reservation
-        p @resvations_of_the_user = @user.reservations
-        p @venues = @resvations_of_the_user.venue
+        @resvations_of_the_user = @user.reservations
+        @venues = @resvations_of_the_user.venue
       end
     end
     erb :bookings
