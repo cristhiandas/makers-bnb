@@ -113,6 +113,22 @@ class Makersbnb < Sinatra::Base
     favorite.save
     user.favorites << favorite
     user.save
-    redirect "/view/#{venue.title}?"
+    redirect "/view/#{venue.title}"
+  end
+
+  get '/favorite' do
+    user = User.get(session[:user_id])
+    venues = Venue.all
+    favorites = Favorite.all
+
+    favorites.each do |favorite|
+      @user_favorites = favorite.venues
+    end
+    # p @favorites_venues = favorite.venues
+    # if @user.favorite == @user.id
+    #   @venues.get(favorite.id)
+    # end
+
+    erb :'favorite/index'
   end
 end
