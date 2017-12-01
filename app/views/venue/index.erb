@@ -4,6 +4,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src='../../src/search.js' ></script>
     <link rel="stylesheet" type='text/css' href="/css/particles.css">
+    <link rel="stylesheet" type='text/css' href="/css/buttons.css">
 
 </head>
 <body>
@@ -11,7 +12,7 @@
   <div id="particle overlay">
   <% if @name %>
   <form action="/venue/new">
-    <button id="Add_venue" >Add a Venue</button>
+    <button class='buttons' id="Add_venue" >Add a Venue</button>
   </form>
 <% end %>
 <br>
@@ -36,7 +37,7 @@
       <br>
       <span>
       <form action="/view/<%= venue.title%>">
-        <button id="view" >View</button>
+        <button class='buttons' id="view" >View</button>
       </form></ul>
     <% end %>
     </ul>

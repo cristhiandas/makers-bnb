@@ -17,3 +17,13 @@
 .sign_out{
   margin-right: 80px;
 }
+
+.buttons {
+    background-color: #ffff;
+    color: red;
+    padding: 3px 3px;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

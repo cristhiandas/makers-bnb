@@ -1,5 +1,28 @@
 .text{
+  font-size: 50px;
   margin-top: 20px;
+  text-decoration: overline underline;
+}
+
+.input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.index-page{
   color: white;
   text-align: center;
+}
+
+.button {
+    background-color: #ffff;
+    border-radius: 12px;
+    color: red;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

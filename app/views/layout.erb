@@ -3,7 +3,7 @@
 
 <head>
   <link rel="stylesheet" type='text/css' href="/css/menu.css">
-  <link rel="stylesheet" type='text/css' href="/css/sign_buttons.css">
+  <link rel="stylesheet" type='text/css' href="/css/buttons.css">
 
 </head>
 <div id="particle"> </div>
@@ -13,7 +13,7 @@
 <div class='sign_out'>
   <form method='post' action='/user'>
     <input type='hidden' name='_method' value='delete'>
-    <input type='submit' value='Sign out'>
+    <input class='buttons' type='submit' value='Sign out'>
   </form>
 </div>
 
@@ -22,7 +22,7 @@
   <form id='sign_in_form' action='/' method='post'>
     <input id='email' name='email' type='email' placeholder='enter email'>
     <input id='password' name='password' type='password' placeholder='enter password'>
-    <input id='sign_in' value='Sign In' type='submit'>
+    <input class='buttons' id='sign_in' value='Sign In' type='submit'>
   </form>
 </div>
 

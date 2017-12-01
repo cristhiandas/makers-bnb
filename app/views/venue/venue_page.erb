@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type='text/css' href="/css/particles.css">
 <link rel="stylesheet" type='text/css' href="/css/text_boxes.css">
+<link rel="stylesheet" type='text/css' href="/css/buttons.css">
 
 </head>
 
@@ -54,22 +55,25 @@
   <% if @name %>
   <form action="/view/<%= venue.title%>" method = "post">
     <p>Start Date: <input id="startDate" type="text" name="startDate"></p>
+    <br>
     <p>End Date: <input id="endDate" type="text" name="endDate"></p>
     <br>
-    <div class = 'buttons'>
+    <div class = 'both-buttons'>
       <div class = 'book-button'>
-        <button id="book" >Book</button>
+        <button class='buttons' id="book" >Book</button>
       </div>
   </form>
 
       <form action='/favorite/new' method='post'>
         <div class = 'favorite-button'>
-          <button id="favorite" name='favorite'>Favorite</button>
+          <button class='buttons' id="favorite" name='favorite'>Favorite</button>
         </div>
       </form>
 
   <% else %>
+  <div class = 'info-text'>
     <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
+  </div>
   <%end%>
 
 <% end %>

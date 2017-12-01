@@ -1,8 +1,9 @@
-/* Container holding the image and the text */
+ /*Container holding the image and the text */
 .venue_page{
   -webkit-box-align:center;
   -webkit-box-pack:center;
   display:-webkit-box;
+  color: white;
 }
 
 .image{
@@ -16,7 +17,6 @@
   position: relative;
 }
 
-/* Bottom right text */
 .text-block {
     position: absolute;
     bottom: 5px;
@@ -25,7 +25,8 @@
     color: white;
     padding-left: 5px;
     padding-right: 5px;
-}
+  }
+
 
 .info-text{
   margin-right: 200px;
@@ -33,16 +34,8 @@
   position: relative;
 }
 
-.buttons{
+.both-buttons{
   -webkit-box-align:center;
   -webkit-box-pack:center;
   display:-webkit-box;
-}
-
-.favorite-button{
-  margin-left: 5px;
-}
-
-.book-button{
-  margin-right: 5px;
 }
