@@ -5,29 +5,38 @@
   <script src='../../src/favorite.js' ></script>
   <link rel="stylesheet" type='text/css' href="/css/particles.css">
   <link rel="stylesheet" type='text/css' href="/css/buttons.css">
+  <link rel="stylesheet" type='text/css' href="/css/index.css">
 
 </head>
 
 <body>
   <div id="particle overlay">
-  <h1> Add a new venue</h1>
-  <form action='/venue' method='post'>
-    <input name= 'title' type="text" placeholder="enter title" >
-    <input name= 'address' type="text" placeholder="enter address" >
-    <input name= 'city' type="text" placeholder="enter city" >
-    <input name= 'price' type="text" placeholder="enter price" >
-    <input name= 'description' type="text" placeholder="enter description" >
-    <input name= 'picture' type="url" placeholder="enter image" >
-    <input class='buttons' id="createVenue" value='Add' type="submit">
-  </form>
+    <div class="index-page">
+      <br>
+      <h1> Add a new venue</h1>
+      <form action='/venue' method='post'>
+        <input class='input-boxes' name= 'title' type="text" placeholder="enter title" >
+        <br>
+        <input class='input-boxes' name= 'address' type="text" placeholder="enter address" >
+        <br>
+        <input class='input-boxes' name= 'city' type="text" placeholder="enter city" >
+        <br>
+        <input class='input-boxes' name= 'price' type="text" placeholder="enter price" >
+        <br>
+        <input class='input-boxes' name= 'description' type="text" placeholder="enter description" >
+        <br>
+        <input class='input-boxes' name= 'picture' type="url" placeholder="enter image" >
+        <br>
+        <input class='buttons' id="createVenue" value='Add' type="submit">
+      </form>
 
-  <br>
-  <h1> Click here go back to venues</h1>
-    <form action='/venue' method='get'>
-      <input class='buttons' id='go_venues' value='View Venues' type='submit'>
-    </form>
-
-
+      <br>
+      <h1> Click here go back to venues</h1>
+      <br>
+        <form action='/venue' method='get'>
+          <input class='buttons' id='go_venues' value='View Venues' type='submit'>
+      </form>
+    </div>
 </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="../../src/particles.js"></script>

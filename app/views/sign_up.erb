@@ -7,16 +7,22 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <link rel="stylesheet" type='text/css' href="/css/particles.css">
   <link rel="stylesheet" type='text/css' href="/css/buttons.css">
+  <link rel="stylesheet" type='text/css' href="/css/index.css">
 </head>
 <div id="particle overlay">
-<h1>Please Sign Up</h1>
-  <form action='/user' method="post">
-    Username: <input name="username" type="text"><br>
-    Email: <input name="signup_email" type="email"><br>
-    Password: <input name="signup_password" type="password"><br>
-    Confirm Password: <input name="password_confirmation" type="password"><br>
-    <button id="sign_up" type="submit">Sign Up</button>
-  </form><br>
+  <div class='index-page'>
+    <br>
+    <h1>Please Sign Up</h1>
+    <form action='/user' method="post">
+      <div class='sign_up_input'>
+        <input class='input-boxes' name="username" type="text" placeholder="Usename"><br>
+        <input class='input-boxes' name="signup_email" type="email" placeholder="Email"><br>
+        <input class='input-boxes' name="signup_password" type="password" placeholder="Password"><br>
+        <input class='input-boxes' name="password_confirmation" type="password" placeholder="Confirm Password"><br>
+      </div>
+      <button class='buttons' id="sign_up" type="submit">Sign Up</button>
+    </form><br>
+  </div>
 </div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

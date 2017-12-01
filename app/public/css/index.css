@@ -5,10 +5,31 @@
 }
 
 .input-boxes {
-    width: 15%;
+    width: 14%;
     padding: 2px 8px;
     margin: 6px 0;
-    box-sizing: border-box;
+    border-radius: 4px;
+    border-color: white;
+    color: red;
+    text-align: center;
+}
+
+.input-boxes::placeholder{
+  color:red
+}
+
+.live-search-box{
+  width: 10%;
+  padding: 2px 2px;
+  margin: 6px 0;
+  border-radius: 4px;
+  border-color: white;
+  color: red;
+  text-align: center;
+}
+
+.live-search-box::placeholder{
+  color:red
 }
 
 .index-page{
@@ -25,4 +46,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.search-box{
+  text-align: center;
 }
