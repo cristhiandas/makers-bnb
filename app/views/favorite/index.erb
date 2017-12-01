@@ -1,3 +1,7 @@
+<link rel="stylesheet" type='text/css' href="/css/particles.css">
+
+<div id="particle overlay">
+
 <% if @favorite_venues %>
 <% @favorite_venues.each do |venue| %>
   <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
@@ -21,3 +25,7 @@
 <% end %>
 <% else %>
 <%end%>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../src/particles.js"></script>

@@ -5,9 +5,10 @@
   <!-- include source files here... -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link rel="stylesheet" type='text/css' href="/css/particles.css">
 
 </head>
-
+<div id="particle overlay">
 <h1>Please Sign Up</h1>
   <form action='/user' method="post">
     Username: <input id='jqusername' name="username" type="text"><br>
@@ -16,4 +17,8 @@
     Confirm Password: <input id='jqpassword_confirmation' name="password_confirmation" type="password"><br>
     <button id="sign_up" type="submit">Sign Up</button>
   </form><br>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="../../src/particles.js"></script>
 </html>

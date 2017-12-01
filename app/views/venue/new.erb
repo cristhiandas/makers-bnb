@@ -3,9 +3,12 @@
 <head>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src='../../src/favorite.js' ></script>
+  <link rel="stylesheet" type='text/css' href="/css/particles.css">
+
 </head>
 
 <body>
+  <div id="particle overlay">
   <h1> Add a new venue</h1>
   <form action='/venue' method='post'>
     <input name= 'title' type="text" placeholder="enter title" >
@@ -23,6 +26,10 @@
       <input id='go_venues' value='View Venues' type='submit'>
     </form>
 
+
+</div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../../src/particles.js"></script>
 </body>
 
 </html>

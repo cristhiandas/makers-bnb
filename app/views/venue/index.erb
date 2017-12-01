@@ -3,9 +3,12 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src='../../src/search.js' ></script>
-</head>
+    <link rel="stylesheet" type='text/css' href="/css/particles.css">
 
+</head>
 <body>
+  <!-- <div id=""> -->
+  <div id="particle overlay">
   <% if @name %>
   <form action="/venue/new">
     <button id="Add_venue" >Add a Venue</button>
@@ -15,31 +18,34 @@
 <input type="text" class="live-search-box" placeholder="search here" />
 
 
-<div>
-  <ul class="live-search-list">
-   <% @venues.reverse.each do |venue| %>
+  <div>
+    <ul class="live-search-list">
+     <% @venues.reverse.each do |venue| %>
+        <br>
+    <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+        <br>
+      <span ><b>Title:</b> <%= venue.title %></span>
       <br>
-  <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+       <span><b>Address:</b> <%= venue.address   %></span>
       <br>
-    <span ><b>Title:</b> <%= venue.title %></span>
-    <br>
-     <span><b>Address:</b> <%= venue.address   %></span>
-    <br>
-    <br>
-    <span><b>City:</b> <%= venue.city   %></span>
-    <br>
-    <br>
-    <span><b>Price:</b> <%= venue.price   %></span>
-    <br>
-    <span>
-    <form action="/view/<%= venue.title%>">
-      <button id="view" >View</button>
-    </form></ul>
-  <% end %>
-  </ul>
+      <br>
+      <span><b>City:</b> <%= venue.city   %></span>
+      <br>
+      <br>
+      <span><b>Price:</b> <%= venue.price   %></span>
+      <br>
+      <span>
+      <form action="/view/<%= venue.title%>">
+        <button id="view" >View</button>
+      </form></ul>
+    <% end %>
+    </ul>
+  </div>
+<!-- </div> -->
 </div>
-
-
+<!-- </div> -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../src/particles.js"></script>
 </body>
 
 </html>
