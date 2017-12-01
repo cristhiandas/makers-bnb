@@ -11,7 +11,7 @@
 </head>
 <body>
   <!-- <div id=""> -->
-  <div class='gird-conteiner' id="particle overlay">
+  <div id="particle overlay">
     <% if @name %>
     <form action="/venue/new">
       <button class='buttons' id="Add_venue" >Add a Venue</button>
@@ -23,27 +23,29 @@
     </div>
 
   <div>
-    <ul class="live-search-list">
-     <% @venues.reverse.each do |venue| %>
+      <ul class="live-search-list">
+       <% @venues.reverse.each do |venue| %>
+       <div class='galery'>
+          <br>
+          <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+          <br>
+        <span ><b>Title:</b> <%= venue.title %></span>
         <br>
-    <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+         <span><b>Address:</b> <%= venue.address   %></span>
         <br>
-      <span ><b>Title:</b> <%= venue.title %></span>
-      <br>
-       <span><b>Address:</b> <%= venue.address   %></span>
-      <br>
-      <br>
-      <span><b>City:</b> <%= venue.city   %></span>
-      <br>
-      <br>
-      <span><b>Price:</b> <%= venue.price   %></span>
-      <br>
-      <span>
-      <form action="/view/<%= venue.title%>">
-        <button class='buttons' id="view" >View</button>
-      </form></ul>
-    <% end %>
-    </ul>
+        <br>
+        <span><b>City:</b> <%= venue.city   %></span>
+        <br>
+        <br>
+        <span><b>Price:</b> <%= venue.price   %></span>
+        <br>
+        <span>
+        <form action="/view/<%= venue.title%>">
+          <button class='buttons' id="view" >View</button>
+        </form></ul>
+      <% end %>
+      </ul>
+    </div>
   </div>
 <!-- </div> -->
 </div>
