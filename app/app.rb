@@ -90,7 +90,7 @@ class Makersbnb < Sinatra::Base
   post '/view/:title' do
     venue = Venue.first(title: session[:title])
     venue_reservations = venue.reservations
-    reservation = Reservation.check(venue_reservations, params[:startDate], params[:endDate])
+  p  reservation = Reservation.check(venue_reservations, params[:startDate], params[:endDate])
     if reservation
       flash[:taken] = 'Dates Unavailable'
       redirect "/view/#{venue.title}"
