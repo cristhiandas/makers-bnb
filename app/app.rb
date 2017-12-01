@@ -1,7 +1,6 @@
 ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'date'
 require_relative 'dm_setup'
 
 class Makersbnb < Sinatra::Base
@@ -91,21 +90,9 @@ class Makersbnb < Sinatra::Base
 
   post '/view/:name' do
     venue = Venue.first(title: session[:title])
-    @res = false
-
-    if venue
-      venue.reservations.each do |past_reservations|
-        enddate = Date.parse(past_reservations.end_date.to_s)
-        startdate = Date.parse(past_reservations.start_date.to_s)
-        newstart = Date.parse(params[:startDate].to_s)
-        newend = Date.parse(params[:endDate].to_s)
-        if (enddate > newstart && newstart >= startdate) || (enddate >= newend && newend > startdate) || (newstart <= startdate && newend >= enddate)
-          @res = true
-        end
-      end
-    end
-
-    if @res
+    venue_reservations = venue.reservations
+    reservation = Reservation.check(venue_reservations, params[:startDate], params[:endDate])
+    if reservation
       flash[:taken] = 'Dates Unavailable'
       redirect "/view/#{venue.title}"
     else
