@@ -5,7 +5,22 @@
   <link rel="stylesheet" type='text/css' href="/css/menu.css">
 
 </head>
+<div>
+<% if session[:user_id] %>
+<form method='post' action='/user'>
+  <input type='hidden' name='_method' value='delete'>
+  <input type='submit' value='Sign out'>
+</form>
 
+<% else %>
+ <form id='sign_in_form' action='/' method='post'>
+   <input id='email' name='email' type='email' placeholder='enter email'>
+   <input id='password' name='password' type='password' placeholder='enter password'>
+   <input id='sign_in' value='Sign In' type='submit'>
+ </form>
+ Don't have an account? <a href='/sign_up'> Sign up </a>
+<% end %>
+</div>
 
 <nav class="slidemenu">
 
@@ -25,7 +40,6 @@
   <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
   <label for="slide-item-4"><p class="icon"><a href='/favorite' style="text-decoration: none;">★</p><span>Favorites</span></label></a>
 
-
   <div class="clear"></div>
 
   <!-- Bar -->
@@ -34,28 +48,6 @@
   </div>
 
 </nav>
-
-
- <% if session[:user_id] %>
- <form method='post' action='/user'>
-   <input type='hidden' name='_method' value='delete'>
-   <input type='submit' value='Sign out'>
- </form>
-
- <% else %>
-  <form id='sign_in_form' action='/' method='post'>
-    <input id='email' name='email' type='email' placeholder='enter email'>
-    <input id='password' name='password' type='password' placeholder='enter password'>
-    <input id='sign_in' value='Sign In' type='submit'>
-  </form>
-  Don't have an account? <a href='/sign_up'> Sign up </a>
-<% end %>
-
-  <!-- <form action='/venue' method='get'>
-    <input id='go_venues' value='View Venues' type='submit'>
-  </form> -->
-
-
 
 <% if flash[:notice] %>
   <div id='notice'><%= flash[:notice] %></div>
