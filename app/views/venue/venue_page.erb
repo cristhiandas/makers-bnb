@@ -21,31 +21,31 @@
 <div>
 
 
-  <% @venues.each do |venue| %>
+
   <div class="image">
 
   <div class="container">
-    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:100%;"> </span>
+    <img src= "<%= @venue.pictures.map(&:path).join(',')  %>"  style="width:100%;"> </span>
     <br>
     <div class="text-block">
-      Title:<%= @title = venue.title %>
+      <span> <b>Title:</b> <%= @venue.title %></span>
     </div>
   </div>
   </div>
   <div class = "venue_page">
   <div class="info-text">
   <br>
-    <span><b>Address:</b> <%= venue.address   %></span>
+    <span><b>Address:</b> <%= @venue.address   %></span>
   <br>
   <br>
-    <span><b>City:</b> <%= venue.city   %></span>
+    <span><b>City:</b> <%= @venue.city   %></span>
   <br>
   <br>
-    <span><b>Price:</b> <%= venue.price   %></span>
+    <span><b>Price:</b> <%= @venue.price   %></span>
   <br>
 
   <br>
-      <span><b>Description:</b> <%= venue.description   %></span>
+      <span><b>Description:</b> <%= @venue.description   %></span>
   <span>
   </div>
     <br>
@@ -53,7 +53,7 @@
 
 
   <% if @name %>
-  <form action="/view/<%= venue.title%>" method = "post">
+  <form action="/view/<%= @venue.title%>" method = "post">
     <p>Start Date: <input id="startDate" type="text" name="startDate"></p>
     <br>
     <p>End Date: <input id="endDate" type="text" name="endDate"></p>
@@ -62,7 +62,7 @@
       <div class = 'book-button'>
         <button class='buttons' id="book" >Book</button>
       </div>
-  </form>
+    </form>
 
       <form action='/favorite/new' method='post'>
         <div class = 'favorite-button'>
@@ -70,13 +70,13 @@
         </div>
       </form>
 
-  <% else %>
-  <div class = 'info-text'>
-    <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
-  </div>
+    <% else %>
+    <div class = 'info-text'>
+      <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
+    </div>
   <%end%>
 
-<% end %>
+
     </div>
   </div>
 </div>

@@ -73,6 +73,9 @@
 <% if flash[:taken] %>
 <div id='taken'><%= flash[:taken] %></div>
 <%end%>
+<% if flash[:favorite] %>
+<div id='favorite'><%= flash[:favorite] %></div>
+<%end%>
 
 
 <%= yield %>

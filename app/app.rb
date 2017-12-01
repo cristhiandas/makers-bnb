@@ -1,7 +1,6 @@
-ENV["RACK_ENV"] ||= "development"
+ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'date'
 require_relative 'dm_setup'
 
 class Makersbnb < Sinatra::Base
@@ -10,12 +9,19 @@ class Makersbnb < Sinatra::Base
   register Sinatra::Flash
   use Rack::MethodOverride
 
-  get '/sign_up' do
-    erb :sign_up
+  helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+
+    def save_to_database(this_model, relationship, instance)
+      relationship << instance
+      this_model.save
+    end
   end
 
-  get '/search' do
-    erb :'search'
+  get '/sign_up' do
+    erb :sign_up
   end
 
   get '/' do
@@ -26,22 +32,20 @@ class Makersbnb < Sinatra::Base
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      session[:name] = user.name
       redirect '/venue'
     else
-      flash[:notice] = "Incorrect email or password"
+      flash[:notice] = 'Incorrect email or password'
       redirect '/'
     end
   end
 
   get '/venue' do
     @venues = Venue.all
-    @name = session[:name]
     erb :'venue/index'
   end
 
   get '/venue/new' do
-    if session[:user_id]
+    if current_user
       erb :'venue/new'
     else
       flash[:notice] = 'Please sign in to add venue'
@@ -50,21 +54,18 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/venue' do
-    user = User.get(session[:user_id])
     venue = Venue.first_or_create(
-       title: params[:title], address: params[:address], city: params[:city],
-        price: params[:price], description: params[:description])
-    venue.pictures << Picture.first_or_create(path: params[:picture])
-    venue.save
-    user.venues << venue
-    user.save
+      title: params[:title], address: params[:address], city: params[:city],
+      price: params[:price], description: params[:description])
+    picture = Picture.first_or_create(path: params[:picture])
+    save_to_database(venue, venue.pictures, picture)
+    save_to_database(current_user, current_user.venues, venue)
     redirect '/venue'
   end
 
   delete '/user' do
     session[:user_id] = nil
-    session[:name] = nil
-    flash[:notice] = 'goodbye!'
+    flash[:notice] = 'Successfully Signed Out'
     redirect to '/'
   end
 
@@ -72,7 +73,6 @@ class Makersbnb < Sinatra::Base
     user = User.create(name: params[:username], email: params[:signup_email],
                       password: params[:signup_password], password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
-    session[:name] = user.name
     if user.id.nil?
       flash[:errors] = user.errors.full_messages
       redirect '/sign_up'
@@ -80,42 +80,24 @@ class Makersbnb < Sinatra::Base
     redirect '/venue'
   end
 
-  get '/view/:name' do
-    @name = session[:name]
-    @venues = Venue.all(title: params[:name])
-    session[:title] = params[:name]
-    @venues.each do |venue|
-      session[:last_venue] = venue.id
-    end
+  get '/view/:title' do
+    @name = current_user.name
+    @venue = Venue.all(title: params[:title]).last
+    session[:venue_id] = @venue.id
     erb :'venue/venue_page'
   end
 
-  post '/view/:name' do
-    user = User.get(session[:user_id])
-    venue = Venue.first(title: session[:title])
-    @res = false
-
-    if venue
-      venue.reservations.each do |past_reservations|
-        enddate = Date.parse(past_reservations.end_date.to_s)
-        startdate = Date.parse(past_reservations.start_date.to_s)
-        newstart = Date.parse(params[:startDate].to_s)
-        newend = Date.parse(params[:endDate].to_s)
-        if (enddate > newstart && newstart >= startdate) ||  (enddate >= newend && newend > startdate) || (newstart <= startdate && newend >= enddate)
-          @res = true
-        end
-      end
-    end
-
-    if @res
-      flash[:taken] = "Dates Unavailable"
+  post '/view/:title' do
+    venue = Venue.get(session[:venue_id])
+    venue_reservations = venue.reservations
+    reservation = Reservation.check(venue_reservations, params[:startDate], params[:endDate])
+    if reservation
+      flash[:taken] = 'Dates Unavailable'
       redirect "/view/#{venue.title}"
     else
       reserve = Reservation.create(start_date: params[:startDate], end_date: params[:endDate])
-      venue.reservations << reserve
-      venue.save
-      user.reservations << reserve
-      user.save
+      save_to_database(venue, venue.reservations, reserve)
+      save_to_database(current_user, current_user.reservations, reserve)
       redirect '/reservations'
     end
   end
@@ -126,23 +108,20 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/favorite/new' do
-    user = User.get(session[:user_id])
-    venue = Venue.get(session[:last_venue])
-    favorite = Favorite.create(user_id: user.id)
-    favorite.venues << venue
-    favorite.save
-    user.favorites << favorite
-    user.save
+    venue = Venue.get(session[:venue_id])
+    favorite = Favorite.create(user_id: current_user.id)
+    save_to_database(favorite, favorite.venues, venue)
+    save_to_database(current_user, current_user.favorites, favorite)
+    flash[:favorite] = 'Added to favourites'
     redirect "/view/#{venue.title}"
   end
 
   get '/favorite' do
-    user = User.get(session[:user_id])
     favorites = Favorite.all
     all_user_with_favorites = favorites.user
-      all_user_with_favorites.each do |user_with_fave|
-      if user==user_with_fave
-        fave = user.favorites
+    all_user_with_favorites.each do |user_with_fave|
+      if current_user == user_with_fave
+        fave = current_user.favorites
         @favorite_venues = fave.venues
       end
     end
@@ -150,12 +129,11 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/reservations' do
-    user = User.get(session[:user_id])
     reservations = Reservation.all
     all_users = reservations.user
     all_users.each do |user_with_reservation|
-      if user == user_with_reservation
-        reservations_of_the_user = user.reservations
+      if current_user == user_with_reservation
+        reservations_of_the_user = current_user.reservations
         @venues = reservations_of_the_user.venue
       end
     end
