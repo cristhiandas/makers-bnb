@@ -4,6 +4,12 @@
   text-decoration: overline underline;
 }
 
+.errors-boxes{
+  color: white;
+  text-align: right;
+  margin-right: 200px;
+}
+
 .input-boxes {
     width: 14%;
     padding: 2px 8px;

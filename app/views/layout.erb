@@ -26,6 +26,14 @@
   </form>
 </div>
 
+<% if flash[:notice] %>
+  <div class='errors-boxes' id='notice'><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:errors] %>
+  <div class='errors-boxes' id='errors'><%= flash[:errors] %></div>
+<% end %>
+
  <div class='sign_up_message'>
  Don't have an account? <a href='/sign_up'> Sign up </a>
  </div>
@@ -61,16 +69,13 @@
 
 </nav>
 
-<% if flash[:notice] %>
-  <div id='notice'><%= flash[:notice] %></div>
-<% end %>
 
-<% if flash[:errors] %>
-  <div id='errors'><%= flash[:errors] %></div>
-<% end %>
+
 
 <% if flash[:taken] %>
-<div id='taken'><%= flash[:taken] %></div>
+<h1>
+<div class='index-page' id='taken'><%= flash[:taken] %></div>
+</h1>
 <%end%>
 
 
