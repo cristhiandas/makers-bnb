@@ -22,6 +22,7 @@
 
   <% @venues.each do |venue| %>
   <div class="image">
+
   <div class="container">
     <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:100%;"> </span>
     <br>
