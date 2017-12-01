@@ -80,15 +80,14 @@ class Makersbnb < Sinatra::Base
     redirect '/venue'
   end
 
-  get '/view/:name' do
+  get '/view/:title' do
     @name = current_user.name
-    @venue = Venue.all(title: params[:name]).last
-    session[:title] = params[:name]
-    session[:last_venue] = @venue.id
+    @venue = Venue.all(title: params[:title]).last
+    session[:title] = params[:title]
     erb :'venue/venue_page'
   end
 
-  post '/view/:name' do
+  post '/view/:title' do
     venue = Venue.first(title: session[:title])
     venue_reservations = venue.reservations
     reservation = Reservation.check(venue_reservations, params[:startDate], params[:endDate])
@@ -109,7 +108,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/favorite/new' do
-    venue = Venue.get(session[:last_venue])
+    venue = Venue.get(session[:title])
     favorite = Favorite.create(user_id: current_user.id)
     save_to_database(favorite, favorite.venues, venue)
     save_to_database(current_user, current_user.favorites, favorite)
