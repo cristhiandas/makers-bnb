@@ -16,29 +16,27 @@
 
 <div>
 
-
-  <% @venues.each do |venue| %>
-    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+    <img src= "<%= @venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
     <br>
-    <span> <b>Title:</b> <%= @title = venue.title %></span>
+    <span> <b>Title:</b> <%= @venue.title %></span>
   <br>
-    <span><b>Address:</b> <%= venue.address   %></span>
-  <br>
-  <br>
-    <span><b>City:</b> <%= venue.city   %></span>
+    <span><b>Address:</b> <%= @venue.address   %></span>
   <br>
   <br>
-    <span><b>Price:</b> <%= venue.price   %></span>
+    <span><b>City:</b> <%= @venue.city   %></span>
+  <br>
+  <br>
+    <span><b>Price:</b> <%= @venue.price   %></span>
   <br>
 
   <br>
-      <span><b>Description:</b> <%= venue.description   %></span>
+      <span><b>Description:</b> <%= @venue.description   %></span>
   <span>
     <br>
   <br>
 
   <% if @name %>
-  <form action="/view/<%= venue.title%>" method = "post">
+  <form action="/view/<%= @venue.title%>" method = "post">
     <p>Start Date: <input id="startDate" type="text" name="startDate"></p>
     <p>End Date: <input id="endDate" type="text" name="endDate"></p>
     <button id="book" >Book</button>
@@ -46,7 +44,6 @@
   <% else %>
   <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
   <%end%>
-<% end %>
 
   </div>
 
