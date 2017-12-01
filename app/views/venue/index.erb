@@ -5,19 +5,22 @@
     <script src='../../src/search.js' ></script>
     <link rel="stylesheet" type='text/css' href="/css/particles.css">
     <link rel="stylesheet" type='text/css' href="/css/buttons.css">
+    <link rel="stylesheet" type='text/css' href="/css/index.css">
+    <link rel="stylesheet" type='text/css' href="/css/grid.css">
 
 </head>
 <body>
   <!-- <div id=""> -->
-  <div id="particle overlay">
-  <% if @name %>
-  <form action="/venue/new">
-    <button class='buttons' id="Add_venue" >Add a Venue</button>
-  </form>
-<% end %>
-<br>
-<input type="text" class="live-search-box" placeholder="search here" />
-
+  <div class='gird-conteiner' id="particle overlay">
+    <% if @name %>
+    <form action="/venue/new">
+      <button class='buttons' id="Add_venue" >Add a Venue</button>
+    </form>
+    <% end %>
+    <br>
+    <div class='search-box'>
+      <input type="text" class="live-search-box" placeholder="search here" />
+    </div>
 
   <div>
     <ul class="live-search-list">
