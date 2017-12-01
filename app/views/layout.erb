@@ -3,27 +3,36 @@
 
 <head>
   <link rel="stylesheet" type='text/css' href="/css/menu.css">
+  <link rel="stylesheet" type='text/css' href="/css/sign_buttons.css">
 
 </head>
-<div>
+<nav class="sign_menu">
 <% if session[:user_id] %>
-<form method='post' action='/user'>
-  <input type='hidden' name='_method' value='delete'>
-  <input type='submit' value='Sign out'>
-</form>
+<div class='sign_out'>
+  <form method='post' action='/user'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Sign out'>
+  </form>
+</div>
 
 <% else %>
- <form id='sign_in_form' action='/' method='post'>
-   <input id='email' name='email' type='email' placeholder='enter email'>
-   <input id='password' name='password' type='password' placeholder='enter password'>
-   <input id='sign_in' value='Sign In' type='submit'>
- </form>
- Don't have an account? <a href='/sign_up'> Sign up </a>
-<% end %>
+<div class='sign_in'>
+  <form id='sign_in_form' action='/' method='post'>
+    <input id='email' name='email' type='email' placeholder='enter email'>
+    <input id='password' name='password' type='password' placeholder='enter password'>
+    <input id='sign_in' value='Sign In' type='submit'>
+  </form>
 </div>
+
+ <div class='sign_up_message'>
+ Don't have an account? <a href='/sign_up'> Sign up </a>
+ </div>
+<% end %>
+</nav>
 
 <nav class="slidemenu">
 
+  
   <!-- Item 1 -->
   <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
   <label for="slide-item-1"><p class="icon"><a href='/' style="text-decoration: none;">♬</p><span>Home</span></a></label>

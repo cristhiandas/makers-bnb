@@ -43,16 +43,16 @@
     <p>End Date: <input id="endDate" type="text" name="endDate"></p>
     <button id="book" >Book</button>
   </form>
+  <br>
+  <form action='/favorite/new' method='post'>
+  <button id="favorite" name='favorite'>Favorite</button>
+  </form>
   <% else %>
-  <a href='/'>Sign in</a> to book or <a href='/sign_up'>sign up</a>
+  <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
   <%end%>
 <% end %>
 
   </div>
-
-  <form action='/favorite/new' method='post'>
-  <button id="favorite" name='favorite'>Favorite</button>
-  </form>
 
 </div>
 </body>
