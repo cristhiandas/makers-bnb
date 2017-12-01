@@ -10,17 +10,26 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/src/date.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type='text/css' href="/css/text_boxes.css">
 </head>
 
 <body>
 
-<div>
+<div >
 
 
   <% @venues.each do |venue| %>
-    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
+  <div class="image">
+  <div class="container">
+    <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:100%;"> </span>
     <br>
-    <span> <b>Title:</b> <%= @title = venue.title %></span>
+    <div class="text-block">
+      Title:<%= @title = venue.title %>
+    </div>
+  </div>
+  </div>
+  <div class = "venue_page">
+  <div class="info-text">
   <br>
     <span><b>Address:</b> <%= venue.address   %></span>
   <br>
@@ -34,26 +43,35 @@
   <br>
       <span><b>Description:</b> <%= venue.description   %></span>
   <span>
+  </div>
     <br>
   <br>
+
 
   <% if @name %>
   <form action="/view/<%= venue.title%>" method = "post">
     <p>Start Date: <input id="startDate" type="text" name="startDate"></p>
     <p>End Date: <input id="endDate" type="text" name="endDate"></p>
-    <button id="book" >Book</button>
+    <br>
+    <div class = 'buttons'>
+      <div class = 'book-button'>
+        <button id="book" >Book</button>
+      </div>
   </form>
-  <br>
-  <form action='/favorite/new' method='post'>
-  <button id="favorite" name='favorite'>Favorite</button>
-  </form>
+
+      <form action='/favorite/new' method='post'>
+        <div class = 'favorite-button'>
+          <button id="favorite" name='favorite'>Favorite</button>
+        </div>
+      </form>
+
   <% else %>
-  <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
+    <a href='/'>Sign in</a> or <a href='/sign_up'>sign up</a> to book or add to favorites
   <%end%>
+
 <% end %>
-
+    </div>
   </div>
-
 </div>
 </body>
 </html>
