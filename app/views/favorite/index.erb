@@ -1,31 +1,38 @@
 <link rel="stylesheet" type='text/css' href="/css/particles.css">
 <link rel="stylesheet" type='text/css' href="/css/buttons.css">
+<link rel="stylesheet" type='text/css' href="/css/index.css">
+<link rel="stylesheet" type='text/css' href="/css/grid.css">
 
 <div id="particle overlay">
 
 <% if @favorite_venues %>
 <% @favorite_venues.each do |venue| %>
-  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-  <br>
+<div class='galery'>
+<div class="index-page">
+  <a target="_blank" href="/view/<%= venue.title%>">
+  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:25%;"> </span>
+
+</div>
+  <div class='desc'>
   <span> <b>Title:</b> <%= venue.title %></span>
-  <br>
+
   <span><b>Address:</b> <%= venue.address   %></span>
   <br>
-  <br>
   <span><b>City:</b> <%= venue.city   %></span>
-  <br>
-  <br>
+    <br>
   <span><b>Price:</b> <%= venue.price   %></span>
-  <br>
-  <br>
-    <span><b>Description:</b> <%= venue.description   %></span>
+    <br>
+    <span><b>Description:</b> <%= venue.description  %></span>
+      <br>  <br>
   <span>
-  <br>
-  <br>
+  </div>
+  </div>
 
 <% end %>
 <% else %>
-You don't have any favorites!
+<div class='index-page'>
+  You don't have any favorites moron!
+</div>
 <%end%>
 </div>
 

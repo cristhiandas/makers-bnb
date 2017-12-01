@@ -1,3 +1,19 @@
-.gird-container {
-  display: grid | inline-grid | subgrid;
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.image{
+    text-align: center;
+}
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    color: white;
+    text-align: center;
 }

@@ -4,12 +4,16 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src='../../src/search.js' ></script>
     <link rel="stylesheet" type='text/css' href="/css/particles.css">
+    <link rel="stylesheet" type='text/css' href="/css/index.css">
+    <link rel="stylesheet" type='text/css' href="/css/grid.css">
 
 </head>
 
 <body>
 <div id="particle overlay">
-<input type="text" class="live-search-box" placeholder="search here" />
+  <div class='search-box'>
+    <input type="text" class="live-search-box" placeholder="search here" />
+  </div>
 
 
 <div>
@@ -18,24 +22,27 @@
     <% @venues.reverse.each do |venue| %>
 
         <br>
-        <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-        <br>
-        <span ><b>Title:</b> <%= venue.title %></span>
-        <br>
-        <span><b>Address:</b> <%= venue.address   %></span>
-        <br>
-        <br>
-        <span><b>City:</b> <%= venue.city   %></span>
-        <br>
-        <br>
-        <span><b>Price:</b> <%= venue.price   %></span>
-        <br>
-        <span>
-        <form action="/view/<%= venue.title%>">
-          <button class='buttons' id="view" >View</button>
-        </form></ul>
+        <div class='galery'>
+          <div class="index-page">
+            <a target="_blank" href="/view/<%= venue.title%>">
+              <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:25%;"> </span>
+          </div>
+          <div class='desc'>
+            <span ><b>Title:</b> <%= venue.title %></span>
+            <br>
+            <span><b>Address:</b> <%= venue.address   %></span>
+            <br>
+            <span><b>City:</b> <%= venue.city   %></span>
+            <br>
+            <span><b>Price:</b> <%= venue.price   %></span>
+            <br>
+            <span>
+          </div>
     <% end %>
     <% else %>
+    <div class='index-page'>
+      You don't have any reservations moron!
+    </div>
     <%end%>
   </ul>
 </div>

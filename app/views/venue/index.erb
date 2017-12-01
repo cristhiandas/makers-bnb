@@ -10,39 +10,43 @@
 
 </head>
 <body>
+  <div class='index-page'>
+    <h1>Venues</h1>
+  </div>
   <!-- <div id=""> -->
-  <div class='gird-conteiner' id="particle overlay">
+  <div id="particle overlay">
     <% if @name %>
+    <div class='index-page'>
     <form action="/venue/new">
       <button class='buttons' id="Add_venue" >Add a Venue</button>
     </form>
+    </div>
     <% end %>
-    <br>
     <div class='search-box'>
       <input type="text" class="live-search-box" placeholder="search here" />
     </div>
 
   <div>
-    <ul class="live-search-list">
-     <% @venues.reverse.each do |venue| %>
-        <br>
-    <ul>  <img src= "<%= venue.pictures.map(&:path).join(',')  %>" height="200" width="200" align="center"> </span>
-        <br>
-      <span ><b>Title:</b> <%= venue.title %></span>
-      <br>
-       <span><b>Address:</b> <%= venue.address   %></span>
-      <br>
-      <br>
-      <span><b>City:</b> <%= venue.city   %></span>
-      <br>
-      <br>
-      <span><b>Price:</b> <%= venue.price   %></span>
-      <br>
-      <span>
-      <form action="/view/<%= venue.title%>">
-        <button class='buttons' id="view" >View</button>
-      </form></ul>
-    <% end %>
+      <ul class="live-search-list">
+       <% @venues.reverse.each do |venue| %>
+          <ul>
+            <div class='galery'>
+              <div class='image'>
+            <a target="_blank" href="/view/<%= venue.title%>">
+            <img src= "<%= venue.pictures.map(&:path).join(',')  %>" style="width:25%;"> </span>
+          </div>
+        <div class='desc'>
+          <span ><b>Title:</b> <%= venue.title %></span>
+          <br>
+           <span><b>Address:</b> <%= venue.address   %></span>
+          <br>
+          <span><b>City:</b> <%= venue.city   %></span>
+          <br>
+          <span><b>Price:</b> <%= venue.price   %></span>
+          <span>
+        </div>
+      </div>
+      <% end %>
     </ul>
   </div>
 <!-- </div> -->
