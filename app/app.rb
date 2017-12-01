@@ -69,8 +69,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user' do
-    user = User.create(name: params[:username], email: params[:email],
-                      password: params[:password], password_confirmation: params[:password_confirmation])
+    user = User.create(name: params[:username], email: params[:signup_email],
+                      password: params[:signup_password], password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
     session[:name] = user.name
     if user.id.nil?
@@ -106,7 +106,7 @@ class Makersbnb < Sinatra::Base
         end
       end
     end
-    
+
     if @res
       flash[:taken] = "Dates Unavailable"
       redirect "/view/#{venue.title}"
