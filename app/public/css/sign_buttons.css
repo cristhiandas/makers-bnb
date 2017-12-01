@@ -1,0 +1,18 @@
+.sign_menu{
+  font-family: arial, sans-serif;
+  font-size-adjust: 0.58;
+  align-items: right;
+  text-align: right;
+  margin: 10px auto;
+}
+
+.sign_in{
+  margin-right: 50px;
+}
+
+.sign_up_message{
+  margin-right: 100px;
+}
+.sign_out{
+  margin-right: 80px;
+}

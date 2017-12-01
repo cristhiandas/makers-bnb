@@ -1,0 +1,48 @@
+/* Container holding the image and the text */
+.venue_page{
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  display:-webkit-box;
+}
+
+.image{
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  display:-webkit-box;
+}
+.container {
+  width: 25%;
+  height: 25%;
+  position: relative;
+}
+
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: black;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.info-text{
+  margin-right: 200px;
+  text-align: left;
+  position: relative;
+}
+
+.buttons{
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  display:-webkit-box;
+}
+
+.favorite-button{
+  margin-left: 5px;
+}
+
+.book-button{
+  margin-right: 5px;
+}

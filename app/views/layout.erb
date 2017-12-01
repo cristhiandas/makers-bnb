@@ -3,14 +3,37 @@
 
 <head>
   <link rel="stylesheet" type='text/css' href="/css/menu.css">
-  <!-- <link rel="stylesheet" type='text/css' href="/css/particles.css"> -->
+  <link rel="stylesheet" type='text/css' href="/css/sign_buttons.css">
+
 </head>
-
-
 <div id="particle"> </div>
 <div id="overlay">
+<nav class="sign_menu">
+<% if session[:user_id] %>
+<div class='sign_out'>
+  <form method='post' action='/user'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Sign out'>
+  </form>
+</div>
+
+<% else %>
+<div class='sign_in'>
+  <form id='sign_in_form' action='/' method='post'>
+    <input id='email' name='email' type='email' placeholder='enter email'>
+    <input id='password' name='password' type='password' placeholder='enter password'>
+    <input id='sign_in' value='Sign In' type='submit'>
+  </form>
+</div>
+
+ <div class='sign_up_message'>
+ Don't have an account? <a href='/sign_up'> Sign up </a>
+ </div>
+<% end %>
+</nav>
 
 <nav class="slidemenu">
+
 
   <!-- Item 1 -->
   <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
