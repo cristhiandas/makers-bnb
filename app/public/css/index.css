@@ -4,10 +4,10 @@
   text-decoration: overline underline;
 }
 
-.input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+.input-boxes {
+    width: 15%;
+    padding: 2px 8px;
+    margin: 6px 0;
     box-sizing: border-box;
 }
 
