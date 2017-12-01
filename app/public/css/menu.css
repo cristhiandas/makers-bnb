@@ -24,9 +24,8 @@
   text-align: center;
   display: block;
   float: left;
-  color: #333;
-  opacity: 0.2;
-
+  /*color: #333;*/
+  color: white;
 }
 
 .slidemenu label:hover{
@@ -82,7 +81,7 @@
   opacity: 1;
 }
 
-
+a { color: inherit; }
 
 .slidemenu #slide-item-1:checked ~ .slider .bar{ margin-left: 0; }
 .slidemenu #slide-item-2:checked ~ .slider .bar{ margin-left: 25%; }
