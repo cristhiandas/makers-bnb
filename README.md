@@ -7,13 +7,13 @@ To create a mock version of AirBnB that allows the user to create, search and bo
 
 ### Our aproach
 
-We wanted to use this experience to learn everything we could, having that in mind we tried to integrate both Sinatra an Jquery on the same project.
+We wanted to use this experience to learn everything we could, having that in mind we tried to integrate both Sinatra a Jquery on the same project.
 
 #### We also:
 - Had a Stand Up every day to choose and separate task.
-- Had a mid day reunion to check the team progress.
+- Had a midday reunion to check the team progress.
 - Had a constant communication flow and asked each other for help.
-- Had a Retro every night to make an assessment on the day's activities and set new task for the next day.
+- Had a Retro every night to make an assessment of the day's activities and set new tasks for the next day.
 
 #### We learned:
 - How to set up databases.
@@ -25,8 +25,8 @@ We wanted to use this experience to learn everything we could, having that in mi
 ### How to start
 - Ruby version should be "2.4.1", run ```rvm install 2.4.1``` to get it, then ```rvm 2.4.1``` to use that ruby version.
 - Check that "postgresql" is installed. if not, follow the [official instructions](https://www.postgresql.org/download/) on how to install it.
-- Then install the bundler ```gem install bundler```, and install the gems on the "Gemfile" by runing ```bundle install```.
-- in the command line type ```psql psotgres```, then ```create database makersbnb_test;``` you should see ```CREATE DATABASE``` as an output, now ```create database makersbnb_development;"``` now close postgresql ```\q```
+- Then install the bundler ```gem install bundler```, and install the gems on the "Gemfile" by running ```bundle install```.
+- in the command line type ```psql psotgres```, then ```create database makersbnb_test;``` you should see ```CREATE DATABASE``` as an output, now ```create database makersbnb_development;``` now close postgresql ```\q```
 
 #### To run tests
 - If you followed the previous steps ```bundle exec rspec``` should do the work
